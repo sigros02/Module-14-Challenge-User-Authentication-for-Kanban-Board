@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 export const login = async (req: Request, res: Response) => {
   // TODO: If the user exists and the password is correct, return a JWT token
   // Extract username and password from request body
-  const { username, password } = req.body();
+  const { username, password } = req.body;
 
   // Find the user in the database by username
   // SG: https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
@@ -33,7 +33,7 @@ export const login = async (req: Request, res: Response) => {
   // Get the secret key from environment variables
   const secretKey = process.env.JWT_SECRET_KEY;
 
-  // SG: add step ti check if secretKey is set in evnironment variables
+  // SG: add step to check if secretKey is set in evnironment variables
   if (!secretKey) {
     return res.status(500).json({ message: "JWT_SECRET_KEY not set" });
   }
@@ -41,7 +41,8 @@ export const login = async (req: Request, res: Response) => {
   // Generate a JWT token for the authenticated user
   // SG: https://www.npmjs.com/package/jsonwebtoken
   // SG: username wraped in object so it is included for later access with token
-  const token = await jwt.sign({ username }, secretKey, { expiresIn: "1h" });
+  const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
+  console.log("Token: ", token);
 
   // Return the token as a JSON response
   return res.status(200).json({ token });

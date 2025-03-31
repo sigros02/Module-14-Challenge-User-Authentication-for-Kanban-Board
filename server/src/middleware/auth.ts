@@ -1,10 +1,21 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from "express";
+// import jwt from "jsonwebtoken";
 
-interface JwtPayload {
-  username: string;
-}
+// interface JwtPayload {
+//   username: string;
+// }
 
-export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateToken = (
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
   // TODO: verify the token exists and add the user data to the request object
+  // SG: need to add authorization key to the response header with token as value
+
+  console.log(
+    "********************************************************************"
+  );
+  console.log("Auth req: ", req.body);
+  next(); // pass the execution off to the next middleware
 };
