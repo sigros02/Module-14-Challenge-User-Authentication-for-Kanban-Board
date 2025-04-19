@@ -7,7 +7,7 @@ const router = Router();
 
 router.use("/auth", authRoutes);
 // TODO: Add authentication to the API routes
-// SG: Express router handles routes with same resource in order they are defined
+// SG: Express router handles routes with same resource path in order they are defined
 router.use("/api", authenticateToken);
 router.use("/api", apiRoutes);
 

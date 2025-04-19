@@ -21,9 +21,12 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login(loginData);
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+      console.log("Login data: ", data);
       Auth.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);
+      alert('Login failed. Please check your username and password.');
     }
   };
 
@@ -45,7 +48,7 @@ const Login = () => {
           value={loginData.password || ''}
           onChange={handleChange}
         />
-        <button type='submit'>Submit Form</button>
+        <button type='submit'>Login</button>
       </form>
     </div>
     

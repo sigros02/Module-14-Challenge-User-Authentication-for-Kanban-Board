@@ -6,6 +6,9 @@ export const login = async (req, res) => {
     // TODO: If the user exists and the password is correct, return a JWT token
     // Extract username and password from request body
     const { username, password } = req.body;
+    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    console.log("req.body: ", req.body);
+    // SG: check if username and password are provided
     // Find the user in the database by username
     // SG: https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
     const user = await User.findOne({ where: { username } });
@@ -36,6 +39,7 @@ export const login = async (req, res) => {
     // SG: https://www.npmjs.com/package/jsonwebtoken
     // SG: username wraped in object so it is included for later access with token
     const token = jwt.sign({ username }, secretKey, { expiresIn: "1h" });
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
     console.log("Token: ", token);
     // Return the token as a JSON response
     return res.status(200).json({ token });
