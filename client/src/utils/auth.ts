@@ -20,14 +20,18 @@ class AuthService {
     return ""; // SG: just to get initial code working
   }
 
-  login(_idToken: string) {
+  login(idToken: string) {
     // TODO: set the token to localStorage
+    localStorage.setItem("token", idToken);
     // TODO: redirect to the home page
+    window.location.assign("/"); // Redirect to the home page after login
   }
 
   logout() {
     // TODO: remove the token from localStorage
     // TODO: redirect to the login page
+    localStorage.removeItem("token");
+    window.location.assign("/login"); // Redirect to the login page after logout
   }
 }
 
